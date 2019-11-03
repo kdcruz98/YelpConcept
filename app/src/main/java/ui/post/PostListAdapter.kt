@@ -8,6 +8,9 @@ import com.example.yelpconcept.R
 import com.example.yelpconcept.databinding.ItemPostBinding
 import model.Post
 
+/**
+ * Creates data binding for list data from the API data subscription.
+ */
 class PostListAdapter: RecyclerView.Adapter<PostListAdapter.ViewHolder>() {
     private lateinit var postList:List<Post>
 

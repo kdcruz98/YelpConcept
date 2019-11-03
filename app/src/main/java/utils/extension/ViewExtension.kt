@@ -4,6 +4,10 @@ import android.content.ContextWrapper
 import androidx.appcompat.app.AppCompatActivity
 import android.view.View
 
+/**
+ * An extension function to return the parent activity of a view
+ * @return context
+ */
 fun View.getParentActivity(): AppCompatActivity?{
     var context = this.context
     while (context is ContextWrapper) {

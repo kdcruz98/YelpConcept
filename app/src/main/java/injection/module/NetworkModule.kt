@@ -34,12 +34,22 @@ object NetworkModule {
         return retrofit.create(PostApi::class.java)
     }
 
+    /**
+     * Provides the a client which introduces the required authorization header
+     */
     private val client = OkHttpClient.Builder().addNetworkInterceptor {
         it.proceed(it.request().newBuilder().addHeader("Authorization", AUTH).build())
     }.build()
 
+    /**
+     * Calls an adapter for Json parsing in Kotlin
+     */
     private val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
 
+    /**
+     * Builds and provides the Retrofit interface
+     * @return the retrofit interface.
+     */
     @Provides
     @Reusable
     @JvmStatic

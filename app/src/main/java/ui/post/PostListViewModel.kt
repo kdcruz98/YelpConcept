@@ -11,6 +11,9 @@ import model.PostSearchResponse
 import network.PostApi
 import javax.inject.Inject
 
+/**
+ * This class calls the Yelp API, initialises the data subscription and handles list data
+ */
 class PostListViewModel: BaseViewModel() {
     @Inject
     lateinit var postApi: PostApi
@@ -31,6 +34,9 @@ class PostListViewModel: BaseViewModel() {
         subscription.dispose()
     }
 
+    /**
+     * Create a subscription for the Yelp API
+     */
     private fun loadPosts(){
         subscription = postApi.getPosts("restaurant", "Brisbane", 10)
             .subscribeOn(Schedulers.io())
@@ -53,6 +59,9 @@ class PostListViewModel: BaseViewModel() {
         loadingVisibility.value = View.GONE
     }
 
+    /**
+     * Send the search response to the adapter for data binding
+     */
     private fun onRetrievePostListSuccess(postList: PostSearchResponse){
         postListAdapter.updatePostList(postList.businesses)
     }

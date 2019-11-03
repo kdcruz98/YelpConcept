@@ -9,11 +9,17 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import utils.extension.getParentActivity
 
+/**
+ * Sets the adapter for the recyclerview
+ */
 @BindingAdapter("adapter")
 fun setAdapter(view: RecyclerView, adapter: RecyclerView.Adapter<*>) {
     view.adapter = adapter
 }
 
+/**
+ * Defines a data binder for the mutableVisbility attribute (For the progress bar)
+ */
 @BindingAdapter("mutableVisibility")
 fun setMutableVisibility(view: View, visibility: MutableLiveData<Int>?) {
     val parentActivity: AppCompatActivity? = view.getParentActivity()
@@ -22,6 +28,9 @@ fun setMutableVisibility(view: View, visibility: MutableLiveData<Int>?) {
     }
 }
 
+/**
+ * Defines a data binder for the mutableText attribute
+ */
 @BindingAdapter("mutableText")
 fun setMutableText(view: TextView,  text: MutableLiveData<String>?) {
     val parentActivity: AppCompatActivity? = view.getParentActivity()

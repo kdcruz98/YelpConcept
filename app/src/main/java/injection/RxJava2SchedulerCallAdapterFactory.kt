@@ -10,6 +10,10 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import java.lang.reflect.Type
 
+/**
+ * An adapter for RxJava data subscription.
+ * @constructor creates the adapter for subscribing to the api calls
+ */
 class RxJava2SchedulerCallAdapterFactory internal constructor(
     okHttpClient: OkHttpClient
 ) : CallAdapter.Factory() {

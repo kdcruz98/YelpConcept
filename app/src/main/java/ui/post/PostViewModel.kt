@@ -9,8 +9,8 @@ class PostViewModel: BaseViewModel() {
     private val postBody = MutableLiveData<String>()
 
     fun bind(post: Post){
-        postTitle.value = post.title
-        postBody.value = post.body
+        postTitle.value = post.name
+        postBody.value = post.location.address1
     }
 
     fun getPostTitle():MutableLiveData<String>{

@@ -2,41 +2,45 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "cf2d77d72a4c3786a6a2296e835458ab",
+    "identityHash": "64dd267087c29355316d33c0802f6b58",
     "entities": [
       {
         "tableName": "Post",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`userId` INTEGER NOT NULL, `id` INTEGER NOT NULL, `title` TEXT NOT NULL, `body` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `name` TEXT NOT NULL, `review_count` TEXT NOT NULL, `imageUrl` TEXT NOT NULL, `location` TEXT)",
         "fields": [
-          {
-            "fieldPath": "userId",
-            "columnName": "userId",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
           {
             "fieldPath": "id",
             "columnName": "id",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "title",
-            "columnName": "title",
             "affinity": "TEXT",
             "notNull": true
           },
           {
-            "fieldPath": "body",
-            "columnName": "body",
+            "fieldPath": "name",
+            "columnName": "name",
             "affinity": "TEXT",
             "notNull": true
+          },
+          {
+            "fieldPath": "review_count",
+            "columnName": "review_count",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "imageUrl",
+            "columnName": "imageUrl",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "location",
+            "columnName": "location",
+            "affinity": "TEXT",
+            "notNull": false
           }
         ],
         "primaryKey": {
-          "columnNames": [
-            "id"
-          ],
+          "columnNames": [],
           "autoGenerate": false
         },
         "indices": [],
@@ -46,7 +50,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'cf2d77d72a4c3786a6a2296e835458ab')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '64dd267087c29355316d33c0802f6b58')"
     ]
   }
 }

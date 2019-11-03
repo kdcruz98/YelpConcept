@@ -1,13 +1,18 @@
 package injection.module
 
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.Reusable
+import injection.RxJava2SchedulerCallAdapterFactory
 import io.reactivex.schedulers.Schedulers
 import network.PostApi
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
+import utils.AUTH
 import utils.BASE_URL
 
 /**
@@ -29,18 +34,21 @@ object NetworkModule {
         return retrofit.create(PostApi::class.java)
     }
 
-    /**
-     * Provides the Retrofit object.
-     * @return the Retrofit object
-     */
+    private val client = OkHttpClient.Builder().addNetworkInterceptor {
+        it.proceed(it.request().newBuilder().addHeader("Authorization", AUTH).build())
+    }.build()
+
+    private val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
+
     @Provides
     @Reusable
     @JvmStatic
     internal fun provideRetrofitInterface(): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
-            .addConverterFactory(MoshiConverterFactory.create())
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
+            .client(client)
+            .addCallAdapterFactory(RxJava2SchedulerCallAdapterFactory(client))
+            .addConverterFactory(MoshiConverterFactory.create(moshi))
             .build()
     }
 }

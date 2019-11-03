@@ -18,11 +18,12 @@
             android:id="@+id/post_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:textSize="18sp"
             android:textStyle="bold"
-            app:mutableText="@{viewModel.getPostTitle()}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:mutableText="@{viewModel.getPostTitle()}" />
 
         <TextView
             android:id="@+id/post_body"
@@ -33,5 +34,15 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/post_title" />
+
+        <TextView
+            android:id="@+id/post_review"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:mutableText="@{viewModel.getPostReview()}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/post_body" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
